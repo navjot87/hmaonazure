@@ -1,0 +1,220 @@
+	{
+	  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	  "contentVersion": "1.0.0.0",
+	  "parameters": {
+		"artifactsBaseUrl": {
+		  "type": "string",
+		  "defaultValue": "",
+		  "metadata": {
+			"description": "Base URL of the solution template gallery package not including the trailing slash",
+			"artifactsBaseUrl": ""
+		  }
+		},
+		"location": {
+		  "type": "string",		  
+		  "metadata": {
+			"description": "Location were resources will be deployed"
+		  }
+		},
+		"vMName":{
+		 "type":"string",
+		 "metadata":{
+			"description":""		 
+		 }		
+		},
+		"customerName":{
+		 "type":"string",
+		 "metadata":{
+			"description":""		 
+		 }		
+		},
+		"companyName":{
+		 "type":"string",
+		 "metadata":{
+			"description":""		 
+		 }		
+		},
+		"webSiteName":{
+		 "type":"string",
+		 "metadata":{
+			"description":""		 
+		 }		
+		},
+		"emailID":{
+		 "type":"string",
+		 "metadata":{
+			"description":""		 
+		 }		
+		},
+		"contactNo":{
+		 "type":"string",
+		 "metadata":{
+			"description":""		 
+		 }		
+		},
+		"alternateNumber":{
+		 "type":"string",
+		 "metadata":{
+			"description":""		 
+		 }		
+		},
+		"address":{
+		 "type":"string",
+		 "metadata":{
+			"description":""		 
+		 }		
+		},
+		"country":{
+		 "type":"string",
+		 "metadata":{
+			"description":""		 
+		 }		
+		},
+		"other":{
+		 "type":"string",
+		 "metadata":{
+			"description":""		 
+		 }		
+		},
+		"state":{
+		 "type":"string",
+		 "metadata":{
+			"description":""		 
+		 }		
+		},
+		"city":{
+		 "type":"string",
+		 "metadata":{
+			"description":""		 
+		 }		
+		},
+		"zipcode":{
+		 "type":"string",
+		 "metadata":{
+			"description":""		 
+		 }		
+		},
+		"remark":{
+		 "type":"string",
+		 "metadata":{
+			"description":""		 
+		 }		
+		}
+		
+		
+  },
+"variables": {
+		"apiVersions": {
+		  "resources": {
+			"deployments": "2016-09-01"
+		  },
+		"storage": {
+			"storageAccounts": "2016-05-01"
+		  },
+		"network": {
+			"virtualNetworks": "2016-03-30",
+			"networkInterfaces": "2016-03-30",
+			"loadBalancers": "2016-03-30",
+			"publicIPAddresses": "2016-03-30",
+			"networkSecurityGroups": "2016-03-30"
+		  },
+		"compute": {
+			"availabilitySets": "2016-03-30",
+			"virtualMachines": "2016-03-30",
+			"virtualMachineExtensions": "2016-03-30"
+		  }
+		},		
+		"baseUrl": "[concat(parameters('artifactsBaseUrl'),'/')]",
+		"logicAppName":"[concat(uniqueString('sendgridApp',resourceGroup().id)]",
+		"sendgridApiKey":"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",
+		"sendgridName":"testapi1",
+		"supportTicket":"Support Ticket - HMA",
+		"emailTo":"",
+		"emailFrom":"",
+		"emailMessage":"[concat('<table cellpadding="0" cellspacing="0" style="width:500px;background-color:aliceblue;border:dotted;border-width:1px;border-color:cadetblue;"><tr style="background-color:cadetblue;height:40px;color:brown;font-weight:bold;"><td align="center">CUSTOMER INFORMATION</td></tr><tr><td><table align="center" style="color:cadetblue;" cellpadding="2" cellspacing="2"><tr><td>VirtualMachine:</td> <td>',parameters('vMName'),'</td> </tr><tr><td>Customer:</td> <td>',parameters('customerName'),'</td> </tr><tr><td>Company:</td> <td>',parameters('companyName'),'</td> </tr><tr><td>WebSite:</td> <td>',parameters('webSiteName'),'</td> </tr><tr><td>EmailID:</td> <td>',parameters('emailID'),'</td> </tr><tr><td>ContactNo:</td> <td>',parameters('contactNo'),'</td> </tr><tr><td>AlternateNumber:</td> <td>',parameters('alternateNumber'),'</td> </tr><tr><td>Address:</td> <td>',parameters('address'),'</td> </tr><tr><td>Country:</td> <td>',parameters('country'),'</td> </tr><tr><td>OtherCountry:</td> <td>',parameters('other'),'</td> </tr><tr><td>State:</td> <td>',parameters('state'),'</td> </tr><tr><td>City:</td> <td>',parameters('city'),'</td> </tr><tr><td>ZipCode:</td> <td>',parameters('zipcode'),'</td> </tr><tr><td>Remark:</td> <td>',parameters('remark'),'</td> </tr></table></td></tr></table>')]"
+	  },
+	  "resources": [
+				{
+      "type": "Microsoft.Web/connections",
+      "apiVersion": "2016-06-01",
+      "location": "[resourceGroup().location]",
+      "name": "[parameters('sendgridName')]",
+      "properties": {
+        "api": {
+          "id": "[concat(subscription().id,'/providers/Microsoft.Web/locations/', resourceGroup().location, '/managedApis/sendgrid')]"
+        },
+        "displayName": "sendgrid",
+        "parameterValues": {
+          "apiKey": "[variables('sendgridApiKey')]"
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Logic/workflows",
+      "apiVersion": "2016-06-01",
+      "name": "[variables('logicAppName')]",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/connections', variables('sendgridName'))]"
+      ],
+      "properties": {
+        "definition": {
+          "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+          "contentVersion": "1.0.0.0",
+          "parameters": {
+            "$connections": {
+              "defaultValue": {},
+              "type": "Object"
+            }
+          },
+          "triggers": {
+            "recurrence": {
+              "type": "recurrence",             
+			  "recurrence": {  
+			  "frequency": "Year",  
+				"interval": "1"  
+				}			              
+            }
+          },		  
+          "actions": {
+            "Send_email": {
+              "type": "ApiConnection",
+              "inputs": {
+                "body": {
+                  "body": "[concat('<html><body>',variables('emailMessage'),'</body></html>']",
+                  "from": "[variables('emailFrom')]",
+                  "ishtml": true,
+                  "subject": "[variables('supportTicket')]",
+                  "to": "[variables('emailTo')]"
+                },
+                "host": {
+                  "connection": {
+                    "name": "@parameters('$connections')['sendgrid']['connectionId']"
+                  }
+                },
+                "method": "post",
+                "path": "/api/mail.send.json"
+              },
+              "runAfter": {}
+            }
+          },
+          "outputs": {}
+        },
+        "parameters": {
+          "$connections": {
+            "value": {
+              "sendgrid": {
+                "id": "[concat(subscription().id,'/providers/Microsoft.Web/locations/', resourceGroup().location, '/managedApis/sendgrid')]",
+                "connectionId": "[resourceId('Microsoft.Web/connections', variables('sendgridName'))]"
+              }
+            }
+          }
+        }
+      }
+    }
+		
+	  ],
+	  "outputs": {
+		
+	  }
+	}

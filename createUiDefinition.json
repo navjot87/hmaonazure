@@ -1,0 +1,306 @@
+{
+  "handler": "Microsoft.Compute.MultiVm",
+  "version": "0.0.1-preview",
+  "parameters": {
+    "basics": [
+      {
+        "name": "VMName",
+        "type": "Microsoft.Common.TextBox",
+        "label": "Virtual Machine Name",
+        "toolTip": "Enter Existing VM Name For Backup.",
+        "osPlatform": "Windows",
+        "constraints": {
+          "required": false,
+          "regex": "^([a-z][a-z0-9-][A-Z][A-Z0-9-]+,)*[a-z][a-z0-9-][A-Z][A-Z0-9-]+$",
+          "validationMessage": "VM name should be alpha-numeric.Multiple VM allow with Comma seperated only."
+        }
+      }
+
+    ],
+    "steps": [
+      {
+        "name": "Customer",
+        "label": "Customer",
+        "subLabel": {
+          "preValidation": "Details",
+          "postValidation": "Done"
+        },
+        "bladeTitle": "Customer",
+        "elements": [
+          {
+            "name": "CustomerName",
+            "type": "Microsoft.Common.TextBox",
+            "label": "Customer Name",
+            "toolTip": "Enter Customer Full Name.",
+            "defaultValue": "",
+            "constraints": {
+              "required": false,
+              "regex": "^[a-z][a-z0-9-]{1,61}[a-z0-9]$",
+              "validationMessage": "Only alphanumeric characters and hyphen are allowed, and the value must be less than 64 characters long."
+            }
+          },
+          {
+            "name": "CompanyName",
+            "type": "Microsoft.Common.TextBox",
+            "label": "Company Name",
+            "toolTip": "Enter Company Full Name. Ex. Hanusoftware Solutions (P). Ltd.",
+            "defaultValue": "",
+            "constraints": {
+              "required": true,
+              "regex": "^[a-z][a-z0-9-]{1,61}[a-z0-9]$",
+              "validationMessage": "Only alphanumeric characters and hyphen are allowed, and the value must be less than 64 characters long."
+            }
+          },
+          {
+            "name": "webSiteName",
+            "type": "Microsoft.Common.TextBox",
+            "label": "Enter Website URL",
+            "toolTip": "Enter your website full URL that is accessible",
+            "defaultValue": "",
+            "constraints": {
+              "required": false,
+              "regex": "^http(s)?://([\\w-]+.)+[\\w-]+(/[\\w- ./?%&=])?$",
+              "validationMessage": "Enter Website In Proper Format"
+            }
+          },
+          {
+            "name": "EmailID",
+            "type": "Microsoft.Common.TextBox",
+            "label": "Email Address",
+            "toolTip": "Enter Your Email Address.",
+            "defaultValue": "",
+            "constraints": {
+              "required": true,
+              "regex": "^([0-9a-zA-Z]([-\\.\\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\\w]*[0-9a-zA-Z]\\.)+[a-zA-Z]{2,9})$",
+              "validationMessage": "Enter Email In Proper Format."
+            }
+          },
+          {
+            "name": "ContactNo",
+            "type": "Microsoft.Common.TextBox",
+            "label": "Contact Number",
+            "toolTip": "Enter Your Contact Number.",
+            "defaultValue": "",
+            "constraints": {
+              "required": true,
+              "regex": "^[0-9-]{1,9}[0-9]$",
+              "validationMessage": "Please enter only integer number between [0-9]."
+            }
+          },
+          {
+            "name": "AlternateNumber",
+            "type": "Microsoft.Common.TextBox",
+            "label": "Alternate Number",
+            "toolTip": "Enter Your Alternate Contact Number.",
+            "defaultValue": "",
+            "constraints": {
+              "required": false,
+              "regex": "^[0-9-]{1,9}[0-9]$",
+              "validationMessage": "Please enter only integer number between [0-9]."
+            }
+          },
+          {
+            "name": "Address",
+            "type": "Microsoft.Common.TextBox",
+            "label": "Address",
+            "toolTip": "Enter Your Full Address.",
+            "defaultValue": "",
+            "constraints": {
+              "required": false,
+              "validationMessage": "Please Enter Your Address."
+            }
+          },
+          {
+            "name": "Country",
+            "type": "Microsoft.Common.DropDown",
+            "label": "Country",
+            "toolTip": "Please Select your Country name.",
+            "defaultValue": "IN",
+            "constraints": {
+              "allowedValues": [
+                {
+                  "label": "India",
+                  "value": "IN"
+                },
+                {
+                  "label": "USA",
+                  "value": "USA"
+                }
+              ]
+            }
+          },
+          {
+            "name": "Other",
+            "type": "Microsoft.Common.TextBox",
+            "label": "Country",
+            "toolTip": "Enter Your Country Name.",
+            "defaultValue": "",
+            "constraints": {
+              "required": false,
+              "validationMessage": "Please Enter Your Country Name."
+            }
+          },
+          {
+            "name": "State",
+            "type": "Microsoft.Common.TextBox",
+            "label": "State",
+            "toolTip": "Enter Your State Name.",
+            "defaultValue": "",
+            "constraints": {
+              "required": false,
+              "regex": "^[a-z][a-z0-9-]{1,61}[a-z0-9]$",
+              "validationMessage": "Only alphanumeric characters and hyphen are allowed, and the value must be less than 64 characters long."
+            }
+          },
+          {
+            "name": "City",
+            "type": "Microsoft.Common.TextBox",
+            "label": "City",
+            "toolTip": "Enter Your City Name.",
+            "defaultValue": "",
+            "constraints": {
+              "required": false,
+              "regex": "^[a-z][a-z0-9-]{1,61}[a-z0-9]$",
+              "validationMessage": "Only alphanumeric characters and hyphen are allowed, and the value must be less than 64 characters long."
+            }
+          },
+          {
+            "name": "Zipcode",
+            "type": "Microsoft.Common.TextBox",
+            "label": "Zipcode",
+            "toolTip": "Enter Your Zipcode.",
+            "defaultValue": "",
+            "constraints": {
+              "required": false,
+              "regex": "^[0-9-]{1,9}[0-9]$",
+              "validationMessage": "Please enter only integer number between [0-9]."
+            }
+          },
+          {
+            "name": "Remark",
+            "type": "Microsoft.Common.TextBox",
+            "label": "Remarks",
+            "toolTip": "Enter Remarks.",
+            "defaultValue": "",
+            "constraints": {
+              "required": false
+            }
+          }
+        ]
+      },
+      {
+        "name": "HMAServices",
+        "label": "HMA",
+        "subLabel": {
+          "preValidation": "Services",
+          "postValidation": "Done"
+        },
+        "bladeTitle": "HMA Services",
+        "elements": [
+          {
+            "name": "Backup",
+            "type": "Microsoft.Common.DropDown",
+            "label": "Backup",
+            "toolTip": "",
+
+            "defaultValue": "Yes",
+            "constraints": {
+              "allowedValues": [
+                {
+                  "label": "Yes",
+                  "value": "Yes"
+                },
+                {
+                  "label": "No",
+                  "value": "No"
+                }
+              ]
+            }
+          },
+          {
+            "name": "Vault",
+            "type": "Microsoft.Common.TextBox",
+            "label": "Vault Name",
+            "toolTip": "Enter Vault Name.",
+            "defaultValue": "",
+            "constraints": {
+              "required": false,
+              "regex": "^[a-z][a-z0-9-]{1,61}[a-z0-9]$",
+              "validationMessage": "Only alphanumeric characters and hyphen are allowed, and the value must be less than 64 characters long."
+            }
+          },
+          {
+            "name": "Policy",
+            "type": "Microsoft.Common.TextBox",
+            "label": "Policy Name",
+            "toolTip": "Enter Policy Name.",
+            "defaultValue": "",
+            "constraints": {
+              "required": false,
+              "regex": "^[a-z][a-z0-9-]{1,61}[a-z0-9]$",
+              "validationMessage": "Only alphanumeric characters and hyphen are allowed, and the value must be less than 64 characters long."
+            }
+          },
+          {
+            "name": "patch",
+            "type": "Microsoft.Common.DropDown",
+            "label": "Window Patching",
+            "toolTip": "",
+            "defaultValue": "Yes",
+            "constraints": {
+              "allowedValues": [
+                {
+                  "label": "Yes",
+                  "value": "Yes"
+                },
+                {
+                  "label": "No",
+                  "value": "No"
+                }
+              ]
+            }
+          },
+          {
+            "name": "Monitoring",
+            "type": "Microsoft.Common.DropDown",
+            "label": "VM Monitoring",
+            "defaultValue": "Yes",
+            "constraints": {
+              "allowedValues": [
+                {
+                  "label": "Yes",
+                  "value": "Yes"
+                },
+                {
+                  "label": "No",
+                  "value": "No"
+                }
+              ]
+            }
+          }
+
+        ]
+      }
+
+
+
+    ],
+    "outputs": {
+      "VMName": "[basics('VMName')]",
+      "CustomerName": "[steps('Customer').CustomerName]",
+      "CompanyName": "[steps('Customer').CompanyName]",
+      "webSiteName": "[steps('Customer').webSiteName]",
+      "EmailID": "[steps('Customer').EmailID]",
+      "ContactNo": "[steps('Customer').ContactNo]",
+      "AlternateNumber": "[steps('Customer').AlternateNumber]",
+      "Address": "[steps('Customer').Address]",
+      "Country": "[steps('Customer').Country]",
+      "other": "[steps('Customer').other]",
+      "State": "[steps('Customer').State]",
+      "City": "[steps('Customer').City]",
+      "Zipcode": "[steps('Customer').Zipcode]",
+      "Remark": "[steps('Customer').Remark]",
+      "location": "[location()]"
+    }
+  }
+}

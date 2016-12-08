@@ -212,7 +212,8 @@
               "required": false,
               "regex": "^[0-9A-Za-z ]+$",
               "validationMessage": "Alphanumeric and space allowed only."
-            }
+            },
+            "visible": "[equals('Other',steps('Customer').Country)]"
           },
           {
             "name": "State",

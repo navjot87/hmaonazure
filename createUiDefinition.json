@@ -194,7 +194,7 @@
           {
             "name": "Other",
             "type": "Microsoft.Common.TextBox",
-            "label": "Country",
+            "label": "Other",
             "toolTip": "Please Enter Your Country Name.",
             "defaultValue": "",
             "constraints": {
@@ -209,8 +209,7 @@
             "toolTip": "Please Enter Your State Name.",
             "defaultValue": "",
             "constraints": {
-              "required": false,
-              "regex": "^[a-z][a-z0-9-]{1,61}[a-z0-9]$",
+              "required": false,              
               "validationMessage": "Only alphanumeric characters and hyphen are allowed, and the value must be less than 64 characters long."
             }
           },
@@ -348,20 +347,20 @@
 
     ],
     "outputs": {
-      "VMName": "[basics('VMName')]",
-      "CustomerName": "[steps('Customer').CustomerName]",
-      "CompanyName": "[steps('Customer').CompanyName]",
+      "vMName": "[basics('VMName')]",
+      "customerName": "[steps('Customer').CustomerName]",
+      "companyName": "[steps('Customer').CompanyName]",
       "webSiteName": "[steps('Customer').webSiteName]",
-      "EmailID": "[steps('Customer').EmailID]",
-      "ContactNo": "[steps('Customer').ContactNo]",
-      "AlternateNumber": "[steps('Customer').AlternateNumber]",
-      "Address": "[steps('Customer').Address]",
-      "Country": "[steps('Customer').Country]",
+      "emailID": "[steps('Customer').EmailID]",
+      "contactNo": "[steps('Customer').ContactNo]",
+      "alternateNumber": "[steps('Customer').AlternateNumber]",
+      "address": "[steps('Customer').Address]",
+      "country": "[steps('Customer').Country]",
       "other": "[steps('Customer').other]",
-      "State": "[steps('Customer').State]",
-      "City": "[steps('Customer').City]",
-      "Zipcode": "[steps('Customer').Zipcode]",
-      "Remark": "[steps('Customer').Remark]",
+      "state": "[steps('Customer').State]",
+      "city": "[steps('Customer').City]",
+      "zipCode": "[steps('Customer').Zipcode]",
+      "remark": "[steps('Customer').Remark]",
       "location": "[location()]"
     }
   }

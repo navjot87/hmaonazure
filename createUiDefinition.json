@@ -10,7 +10,7 @@
         "toolTip": "Enter Existing VM Name For Backup.",
         "osPlatform": "Windows",
         "constraints": {
-          "required": false,
+          "required": true,
           "regex": "^([a-z0-9A-Z0-9-]+,)*[a-z0-9A-Z0-9-]+$",
           "validationMessage": "VM name should be alpha-numeric.Multiple VM allow with Comma seperated only."
         }

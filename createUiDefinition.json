@@ -35,7 +35,8 @@
             "defaultValue": "",
             "constraints": {
               "required": true,
-              "validationMessage": "Only alphanumeric characters and hyphen are allowed, and the value must be less than 64 characters long."
+              "regex": "^[0-9A-Za-z ]+$",
+              "validationMessage": "Customer should be alphanumeric and space allowed only."
             }
           },
           {
@@ -46,7 +47,8 @@
             "defaultValue": "",
             "constraints": {
               "required": true,
-              "validationMessage": "Only alphanumeric characters and hyphen are allowed, and the value must be less than 64 characters long."
+              "regex": "^[0-9A-Za-z ]+$",
+              "validationMessage": "Company should be alphanumeric and space allowed only ."
             }
           },
           {
@@ -105,7 +107,8 @@
             "defaultValue": "",
             "constraints": {
               "required": false,
-              "validationMessage": "Please Enter Your Address."
+              "regex": "^[0-9A-Za-z ]+$",
+              "validationMessage": "Alphanumeric and Space allowed only."
             }
           },
           {
@@ -113,9 +116,13 @@
             "type": "Microsoft.Common.DropDown",
             "label": "Country",
             "toolTip": "Please Select your Country name.",
-            "defaultValue": "IN",
+            "defaultValue": "Amsterdam",
             "constraints": {
               "allowedValues": [
+                 {
+                  "label": "Other",
+                  "value": "Other"
+                },
                 {
                   "label": "Amsterdam",
                   "value": "Amsterdam"
@@ -139,6 +146,10 @@
                 {
                   "label": "IL",
                   "value": "IL"
+                },
+                 {
+                  "label": "India",
+                  "value": "India"
                 },
                 {
                   "label": "Ireland",
@@ -199,7 +210,8 @@
             "defaultValue": "",
             "constraints": {
               "required": false,
-              "validationMessage": "Please Enter Your Country Name."
+              "regex": "^[0-9A-Za-z ]+$",
+              "validationMessage": "Alphanumeric and space allowed only."
             }
           },
           {
@@ -210,7 +222,8 @@
             "defaultValue": "",
             "constraints": {
               "required": false,              
-              "validationMessage": "Only alphanumeric characters and hyphen are allowed, and the value must be less than 64 characters long."
+              "regex": "^[0-9A-Za-z ]+$",
+              "validationMessage": "Alphanumeric and space allowed only."
             }
           },
           {
@@ -221,8 +234,8 @@
             "defaultValue": "",
             "constraints": {
               "required": false,
-              "regex": "^[a-z][a-z0-9-]{1,61}[a-z0-9]$",
-              "validationMessage": "Only alphanumeric characters and hyphen are allowed, and the value must be less than 64 characters long."
+              "regex": "^[0-9A-Za-z ]+$",
+              "validationMessage": "Alphanumeric and space allowed only."
             }
           },
           {
@@ -233,8 +246,8 @@
             "defaultValue": "",
             "constraints": {
               "required": false,
-              "regex": "^[0-9-]{1,9}[0-9]$",
-              "validationMessage": "Please enter only integer number between [0-9]."
+              "regex": "^[0-9A-Za-z]+$",
+              "validationMessage": "Alphanumeric and space allowed only."
             }
           },
           {
@@ -244,7 +257,9 @@
             "toolTip": "Please Enter Remarks.",
             "defaultValue": "",
             "constraints": {
-              "required": false
+              "required": false,
+              "regex": "^[0-9A-Za-z ]+$",
+              "validationMessage": "Alphanumeric and space allowed only."
             }
           }
         ]

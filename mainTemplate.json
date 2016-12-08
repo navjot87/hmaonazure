@@ -88,7 +88,7 @@
 			"description":""		 
 		 }		
 		},
-		"zipcode":{
+		"zipCode":{
 		 "type":"string",
 		 "metadata":{
 			"description":""		 
@@ -125,29 +125,28 @@
 		  }
 		},		
 		"baseUrl": "[concat(parameters('artifactsBaseUrl'),'/')]",
-		"logicAppName":"[concat(uniqueString('sendgridApp',resourceGroup().id)]",
-		"sendgridApiKey":"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",
-		"sendgridName":"testapi1",
+		"logicAppName":"[concat('sendgridApp',uniqueString(resourceGroup().id))]",
+		"sendgridApiKey":"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",
+		"sendgridName":"MEmail",
 		"supportTicket":"Support Ticket - HMA",
-		"emailTo":"",
-		"emailFrom":"",
-		"emailMessage":"[concat('<table cellpadding="0" cellspacing="0" style="width:500px;background-color:aliceblue;border:dotted;border-width:1px;border-color:cadetblue;"><tr style="background-color:cadetblue;height:40px;color:brown;font-weight:bold;"><td align="center">CUSTOMER INFORMATION</td></tr><tr><td><table align="center" style="color:cadetblue;" cellpadding="2" cellspacing="2"><tr><td>VirtualMachine:</td> <td>',parameters('vMName'),'</td> </tr><tr><td>Customer:</td> <td>',parameters('customerName'),'</td> </tr><tr><td>Company:</td> <td>',parameters('companyName'),'</td> </tr><tr><td>WebSite:</td> <td>',parameters('webSiteName'),'</td> </tr><tr><td>EmailID:</td> <td>',parameters('emailID'),'</td> </tr><tr><td>ContactNo:</td> <td>',parameters('contactNo'),'</td> </tr><tr><td>AlternateNumber:</td> <td>',parameters('alternateNumber'),'</td> </tr><tr><td>Address:</td> <td>',parameters('address'),'</td> </tr><tr><td>Country:</td> <td>',parameters('country'),'</td> </tr><tr><td>OtherCountry:</td> <td>',parameters('other'),'</td> </tr><tr><td>State:</td> <td>',parameters('state'),'</td> </tr><tr><td>City:</td> <td>',parameters('city'),'</td> </tr><tr><td>ZipCode:</td> <td>',parameters('zipcode'),'</td> </tr><tr><td>Remark:</td> <td>',parameters('remark'),'</td> </tr></table></td></tr></table>')]"
+		"emailTo":"sdplusmsptest@hanusoftware.com",
+		"emailFrom":"ishwar.dutt@in.hanusoftware.com"		
 	  },
 	  "resources": [
 				{
-      "type": "Microsoft.Web/connections",
-      "apiVersion": "2016-06-01",
-      "location": "[resourceGroup().location]",
-      "name": "[parameters('sendgridName')]",
-      "properties": {
-        "api": {
-          "id": "[concat(subscription().id,'/providers/Microsoft.Web/locations/', resourceGroup().location, '/managedApis/sendgrid')]"
-        },
-        "displayName": "sendgrid",
-        "parameterValues": {
-          "apiKey": "[variables('sendgridApiKey')]"
-        }
-      }
+				  "type": "Microsoft.Web/connections",
+				  "apiVersion": "2016-06-01",
+				  "location": "[resourceGroup().location]",
+				  "name": "[variables('sendgridName')]",
+				  "properties": {
+					"api": {
+					  "id": "[concat(subscription().id,'/providers/Microsoft.Web/locations/', resourceGroup().location, '/managedApis/sendgrid')]"
+					},
+					"displayName": "sendgrid",
+					"parameterValues": {
+					  "apiKey": "[variables('sendgridApiKey')]"
+					}
+				  }
     },
     {
       "type": "Microsoft.Logic/workflows",
@@ -165,7 +164,11 @@
             "$connections": {
               "defaultValue": {},
               "type": "Object"
-            }
+            },
+			"$message":{
+			  "type":"Object",
+			 "defaultValue": {}
+			}
           },
           "triggers": {
             "recurrence": {
@@ -181,7 +184,7 @@
               "type": "ApiConnection",
               "inputs": {
                 "body": {
-                  "body": "[concat('<html><body>',variables('emailMessage'),'</body></html>']",
+                  "body": "@parameters('$message')['$emailBody']",
                   "from": "[variables('emailFrom')]",
                   "ishtml": true,
                   "subject": "[variables('supportTicket')]",
@@ -192,7 +195,7 @@
                     "name": "@parameters('$connections')['sendgrid']['connectionId']"
                   }
                 },
-                "method": "post",
+                "method": "POST",
                 "path": "/api/mail.send.json"
               },
               "runAfter": {}
@@ -208,7 +211,12 @@
                 "connectionId": "[resourceId('Microsoft.Web/connections', variables('sendgridName'))]"
               }
             }
-          }
+          },
+		  "$message":{
+			"value":{
+			  "$emailBody":"[concat('<html xmlns=\"http://www.w3.org/1999/xhtml\"><head><title></title></head><body>','<br/>','<b>VirtualMachine : </b>',parameters('vMName'),'<br/>','<b>Customer : </b>',parameters('customerName'),'<br/>','<b>Company : <b/>',parameters('companyName'),'<br/>','<b>WebSite : </b>',parameters('webSiteName'),'<br/>','<b>EmailID : </b>',parameters('emailID'),'<br/>','<b>ContactNo : </b>',parameters('contactNo'),'<br/>','<b>AlternateNumber : </b>',parameters('alternateNumber'),'<br/>','<b>Address : </b>',parameters('address'),'<br/>','<b>Country : </b>',parameters('country'),'<br/>','<b>OtherCountry : </b>',parameters('other'),'<br/>','<b>State : </b>',parameters('state'),'<br/>','<b>City : </b>',parameters('city'),'<br/>','<b>ZipCode : </b>',parameters('zipCode'),'<br/>','<b>Remark : </b>',parameters('remark'),'</body></html>')]"
+			}		  
+		  }
         }
       }
     }

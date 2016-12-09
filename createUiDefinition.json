@@ -83,7 +83,7 @@
             "defaultValue": "",
             "constraints": {
               "required": true,
-              "regex": "^[0-9-]{1,9}[0-9]$",
+              "regex": "^[0-9-]{1,13}[0-9]$",
               "validationMessage": "Please enter only integer number between [0-9]."
             }
           },
@@ -95,7 +95,7 @@
             "defaultValue": "",
             "constraints": {
               "required": false,
-              "regex": "^[0-9-]{1,9}[0-9]$",
+              "regex": "^[0-9-]{1,13}[0-9]$",
               "validationMessage": "Please enter only integer number between [0-9]."
             }
           },
@@ -107,7 +107,6 @@
             "defaultValue": "",
             "constraints": {
               "required": false,
-              "regex": "^[0-9A-Za-z ]+$",
               "validationMessage": "Alphanumeric and Space allowed only."
             }
           },
@@ -247,7 +246,7 @@
             "defaultValue": "",
             "constraints": {
               "required": false,
-              "regex": "^[0-9A-Za-z]+$",
+              "regex": "^[0-9A-Za-z]{1,9}[0-9A-Za-z]$",
               "validationMessage": "Alphanumeric and space allowed only."
             }
           },
@@ -259,7 +258,6 @@
             "defaultValue": "",
             "constraints": {
               "required": false,
-              "regex": "^[0-9A-Za-z ]+$",
               "validationMessage": "Alphanumeric and space allowed only."
             }
           }

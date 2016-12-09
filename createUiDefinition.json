@@ -47,7 +47,7 @@
             "defaultValue": "",
             "constraints": {
               "required": true,
-              "regex": "^[0-9A-Za-z ]+$",
+              "regex": "^[a-zA-Z\\s\\.]+$",
               "validationMessage": "Company should be alphanumeric and space allowed only ."
             }
           },

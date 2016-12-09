@@ -72,7 +72,7 @@
             "constraints": {
               "required": true,
               "regex": "^([0-9a-zA-Z]([-\\.\\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\\w]*[0-9a-zA-Z]\\.)+[a-zA-Z]{2,9})$",
-              "validationMessage": "Enter Email In Proper Format."
+              "validationMessage": "Email should be in Proper Format."
             }
           },
           {
@@ -84,7 +84,7 @@
             "constraints": {
               "required": true,
               "regex": "^[0-9-]{1,13}[0-9]$",
-              "validationMessage": "Please enter only integer number between [0-9]."
+              "validationMessage": "Only integer number allowed [0-9]."
             }
           },
           {
@@ -96,7 +96,7 @@
             "constraints": {
               "required": false,
               "regex": "^[0-9-]{1,13}[0-9]$",
-              "validationMessage": "Please enter only integer number between [0-9]."
+              "validationMessage": "Only integer number allowed [0-9]."
             }
           },
           {

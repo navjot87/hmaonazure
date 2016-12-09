@@ -83,7 +83,7 @@
             "defaultValue": "",
             "constraints": {
               "required": true,
-              "regex": "^[0-9-]{1,13}[0-9]$",
+              "regex": "^[0-9- +]{1,14}[0-9 +]$",
               "validationMessage": "Only integer number allowed [0-9]."
             }
           },
@@ -95,7 +95,7 @@
             "defaultValue": "",
             "constraints": {
               "required": false,
-              "regex": "^[0-9-]{1,13}[0-9]$",
+              "regex": "^[0-9- +]{1,14}[0-9 +]$",
               "validationMessage": "Only integer number allowed [0-9]."
             }
           },

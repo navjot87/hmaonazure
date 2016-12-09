@@ -302,7 +302,8 @@
               "required": false,
               "regex": "^[a-z][a-z0-9-]{1,61}[a-z0-9]$",
               "validationMessage": "Only alphanumeric characters and hyphen are allowed, and the value must be less than 64 characters long."
-            }
+            },
+            "visible": "[equals('No',steps('HMAServices').Backup)]"
           },
           {
             "name": "Policy",
@@ -314,7 +315,8 @@
               "required": false,
               "regex": "^[a-z][a-z0-9-]{1,61}[a-z0-9]$",
               "validationMessage": "Only alphanumeric characters and hyphen are allowed, and the value must be less than 64 characters long."
-            }
+            },
+            "visible": "[equals('No',steps('HMAServices').Backup)]"
           },
           {
             "name": "patch",

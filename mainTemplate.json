@@ -54,6 +54,7 @@
 		},
 		"alternateNumber":{
 		 "type":"string",
+		 "defaultValue": "",
 		 "metadata":{
 			"description":""		 
 		 }		
@@ -72,30 +73,35 @@
 		},
 		"other":{
 		 "type":"string",
+		 "defaultValue": "",
 		 "metadata":{
 			"description":""		 
 		 }		
 		},
 		"state":{
 		 "type":"string",
+		"defaultValue": "",
 		 "metadata":{
 			"description":""		 
 		 }		
 		},
 		"city":{
 		 "type":"string",
+		"defaultValue": "",
 		 "metadata":{
 			"description":""		 
 		 }		
 		},
 		"zipCode":{
 		 "type":"string",
+		"defaultValue": "",
 		 "metadata":{
 			"description":""		 
 		 }		
 		},
 		"remark":{
 		 "type":"string",
+		"defaultValue": "",	
 		 "metadata":{
 			"description":""		 
 		 }		
